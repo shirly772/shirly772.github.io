@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商务英语写作 · 智慧课程</title>
+<style>
+  :root{
+    --bg:#f2f5f9;
+    --panel:#ffffff;
+    --panel-2:#f8fafc;
+    --ink:#16202f;
+    --ink-2:#5b6779;
+    --ink-3:#8b96a8;
+    --line:#e2e8f0;
+    --line-2:#eef2f7;
+    --primary:#1b4f8f;
+    --primary-2:#2a6bb8;
+    --primary-soft:#eaf1fa;
+    --accent:#b45309;
+    --accent-soft:#fdf6ec;
+    --ok:#157347;
+    --ok-soft:#eaf6ef;
+    --bad:#b3261e;
+    --bad-soft:#fdefee;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(16,32,52,.06),0 8px 24px -12px rgba(16,32,52,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  button{font-family:inherit;cursor:pointer}
+  .en{font-family:Georgia,"Times New Roman",serif}
+
+  /* ---------- 布局 ---------- */
+  .app{display:flex;min-height:100vh}
+  .side{
+    width:296px;flex:0 0 296px;background:var(--panel);border-right:1px solid var(--line);
+    position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
+  }
+  .brand{padding:20px 20px 16px;border-bottom:1px solid var(--line-2)}
+  .brand h1{margin:0;font-size:18px;letter-spacing:.5px}
+  .brand .sub{font-size:12px;color:var(--ink-3);margin-top:3px;letter-spacing:.4px}
+  .brand .tag{
+    display:inline-block;margin-top:10px;font-size:11px;padding:2px 9px;border-radius:999px;
+    background:var(--primary-soft);color:var(--primary);font-weight:600;letter-spacing:.3px;
+  }
+  .side-scroll{overflow-y:auto;padding:10px 10px 90px;flex:1}
+  .part-title{
+    font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:1.2px;
+    padding:16px 12px 6px;text-transform:uppercase;
+  }
+  .part-title span{color:var(--primary);font-weight:800}
+  .navitem{
+    display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:0;background:transparent;
+    padding:9px 12px;border-radius:9px;color:var(--ink-2);font-size:13.5px;line-height:1.45;
+  }
+  .navitem:hover{background:var(--panel-2)}
+  .navitem.active{background:var(--primary-soft);color:var(--primary);font-weight:600}
+  .navitem .no{
+    flex:0 0 auto;font-size:11px;font-weight:700;color:var(--ink-3);padding-top:2px;min-width:56px;letter-spacing:.2px;
+  }
+  .navitem.active .no{color:var(--primary-2)}
+  .navitem .dot{
+    flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--line);margin-top:8px;
+  }
+  .navitem .dot.on{background:var(--ok)}
+  .side-foot{
+    position:absolute;bottom:0;left:0;right:0;padding:12px 16px 16px;
+    background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%);
+  }
+  .side-foot .bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+  .side-foot .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));width:0;transition:width .4s}
+  .side-foot .lbl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-3);margin-bottom:7px}
+  .side-foot .lbl b{color:var(--primary)}
+
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{
+    position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);padding:10px 26px;display:flex;gap:12px;align-items:center;
+  }
+  .search{
+    flex:1;max-width:460px;display:flex;align-items:center;gap:8px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:7px 12px;
+  }
+  .search input{border:0;outline:0;background:transparent;flex:1;font-size:13.5px;color:var(--ink);font-family:inherit}
+  .search svg{flex:0 0 auto;opacity:.5}
+  .tbtn{
+    border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:7px 14px;
+    font-size:13px;color:var(--ink-2);font-weight:600;display:flex;align-items:center;gap:6px;
+  }
+  .tbtn:hover{border-color:var(--primary);color:var(--primary)}
+  .wrap{padding:34px 44px 100px;max-width:920px;width:100%;margin:0 auto}
+
+  /* ---------- 首页 ---------- */
+  .hero{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:36px 40px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--primary),var(--primary-2))}
+  .hero h2{margin:0 0 6px;font-size:29px;letter-spacing:1px}
+  .hero .h-en{font-size:14px;color:var(--ink-3);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+  .hero p{color:var(--ink-2);font-size:14px;margin:12px 0 0;max-width:660px}
+  .hero .note{background:var(--accent-soft);border-left:3px solid var(--accent);color:#7c4a08;font-size:12.5px;padding:10px 14px;border-radius:0 8px 8px 0;margin-top:20px;line-height:1.7}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .stat b{display:block;font-size:26px;color:var(--primary);line-height:1.2}
+  .stat span{font-size:12px;color:var(--ink-3)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:26px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;text-align:left;
+    display:flex;flex-direction:column;gap:6px;transition:.18s;
+  }
+  .card:hover{border-color:var(--primary-2);box-shadow:var(--shadow);transform:translateY(-1px)}
+  .card .c-no{font-size:11px;font-weight:800;color:var(--primary);letter-spacing:1px}
+  .card .c-cn{font-size:15.5px;font-weight:700;color:var(--ink)}
+  .card .c-en{font-size:12.5px;color:var(--ink-3);font-family:Georgia,serif}
+  .card .c-sum{font-size:12.5px;color:var(--ink-2);line-height:1.65;margin-top:4px}
+  .card .c-meta{display:flex;gap:10px;align-items:center;margin-top:8px;font-size:11.5px;color:var(--ink-3)}
+  .pill{background:var(--panel-2);border:1px solid var(--line);border-radius:99px;padding:1px 9px}
+  .pill.done{background:var(--ok-soft);border-color:#cbe8d8;color:var(--ok);font-weight:700}
+
+  /* ---------- 讲次页 ---------- */
+  .lh{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 34px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .lh:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--primary),var(--primary-2))}
+  .lh .kicker{font-size:11.5px;font-weight:800;color:var(--primary);letter-spacing:1.6px}
+  .lh h2{margin:8px 0 4px;font-size:26px;letter-spacing:.5px}
+  .lh .h-en{font-family:Georgia,serif;color:var(--ink-3);font-size:14.5px}
+  .lh .sum{color:var(--ink-2);font-size:14px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+  .lh .acts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:9px;
+    padding:8px 16px;font-size:13px;font-weight:600;
+  }
+  .btn:hover{border-color:var(--primary);color:var(--primary)}
+  .btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+  .btn.ok:hover{background:#116039;border-color:#116039;color:#fff}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+  .btn.primary:hover{background:#15406f;border-color:#15406f;color:#fff}
+
+  section.sec{margin-top:30px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .sec-h .idx{
+    width:26px;height:26px;flex:0 0 26px;border-radius:8px;background:var(--primary-soft);color:var(--primary);
+    font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .sec-h h3{margin:0;font-size:17px;letter-spacing:.3px}
+  .sec-h .n{font-size:11.5px;color:var(--ink-3);margin-left:auto;letter-spacing:.5px}
+
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .box + .box{margin-top:12px}
+
+  ul.goals{margin:0;padding:0;list-style:none}
+  ul.goals li{position:relative;padding-left:26px;margin:9px 0;color:var(--ink-2);font-size:14px}
+  ul.goals li:before{
+    content:"";position:absolute;left:6px;top:10px;width:7px;height:7px;border-radius:2px;
+    background:var(--primary-2);transform:rotate(45deg);
+  }
+  .kp{border-left:3px solid var(--primary-soft);padding-left:16px;margin:20px 0}
+  .kp:first-child{margin-top:4px}
+  .kp h4{margin:0 0 6px;font-size:14.5px;color:var(--primary);letter-spacing:.2px}
+  .kp p{margin:0;color:var(--ink-2);font-size:14px}
+
+  .terms{width:100%;border-collapse:collapse;font-size:13.5px}
+  .terms th{
+    text-align:left;font-size:11.5px;letter-spacing:.8px;color:var(--ink-3);font-weight:700;
+    padding:8px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;
+  }
+  .terms td{padding:9px 12px;border-bottom:1px solid var(--line-2);vertical-align:top}
+  .terms tr:last-child td{border-bottom:0}
+  .terms td:first-child{font-family:Georgia,serif;color:var(--ink);font-weight:600;width:38%}
+  .terms td:nth-child(2){color:var(--ink);width:24%}
+  .terms td:nth-child(3){color:var(--ink-3);font-size:12.5px}
+
+  .flow{margin:0;padding:0;list-style:none;counter-reset:fl}
+  .flow li{position:relative;padding:0 0 18px 40px;counter-increment:fl}
+  .flow li:before{
+    content:counter(fl,decimal-leading-zero);position:absolute;left:0;top:1px;
+    width:26px;height:26px;border-radius:50%;background:var(--primary-soft);color:var(--primary);
+    font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;
+  }
+  .flow li:after{content:"";position:absolute;left:13px;top:29px;bottom:2px;width:1px;background:var(--line)}
+  .flow li:last-child{padding-bottom:0}
+  .flow li:last-child:after{display:none}
+  .flow .fn{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .flow .fd{display:block;font-size:13.5px;color:var(--ink-2)}
+  .tips{margin:18px 0 0;padding:14px 18px;background:var(--accent-soft);border-radius:10px;border-left:3px solid var(--accent)}
+  .tips .t-h{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.6px;margin-bottom:6px}
+  .tips ul{margin:0;padding-left:18px}
+  .tips li{color:#7c4a08;font-size:13px;margin:4px 0}
+
+  .sample-h{font-size:15px;font-weight:700;margin:0 0 4px}
+  .sample-n{font-size:13px;color:var(--ink-2);margin:0 0 16px}
+  .blk{border:1px solid var(--line);border-radius:10px;margin-top:12px;overflow:hidden}
+  .blk .bl{background:var(--panel-2);padding:7px 14px;font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.5px;border-bottom:1px solid var(--line-2)}
+  .blk .be{padding:14px 16px;font-family:Georgia,"Times New Roman",serif;font-size:14px;color:var(--ink);white-space:pre-line;line-height:1.85}
+  .blk .bc{padding:9px 16px;background:#fcfdff;border-top:1px dashed var(--line-2);font-size:12.5px;color:var(--ink-3)}
+  .blk .bc:empty{display:none}
+
+  .quiz .q{border-bottom:1px solid var(--line-2);padding:18px 0}
+  .quiz .q:last-child{border-bottom:0;padding-bottom:0}
+  .quiz .q:first-child{padding-top:2px}
+  .q-t{display:flex;gap:10px;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:12px}
+  .q-t .qn{
+    flex:0 0 22px;height:22px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line);
+    font-size:11.5px;font-weight:800;color:var(--ink-2);display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .opt{
+    display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
+    border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:10px 14px;margin-bottom:8px;
+    font-size:13.5px;color:var(--ink-2);line-height:1.6;transition:.14s;font-family:inherit;
+  }
+  .opt:hover:not(:disabled){border-color:var(--primary-2);background:var(--primary-soft)}
+  .opt:disabled{cursor:default}
+  .opt .k{
+    flex:0 0 20px;height:20px;border-radius:5px;background:var(--panel-2);border:1px solid var(--line);
+    font-size:11px;font-weight:800;color:var(--ink-3);display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+  .opt.right{border-color:#b7e0c9;background:var(--ok-soft);color:var(--ok);font-weight:600}
+  .opt.right .k{background:var(--ok);border-color:var(--ok);color:#fff}
+  .opt.wrong{border-color:#efc3bf;background:var(--bad-soft);color:var(--bad);font-weight:600}
+  .opt.wrong .k{background:var(--bad);border-color:var(--bad);color:#fff}
+  .ex{margin-top:8px;padding:10px 14px;background:var(--panel-2);border-left:3px solid var(--primary-2);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-2);display:none}
+  .ex.show{display:block}
+  .score{
+    display:flex;align-items:center;gap:14px;margin-top:20px;padding:14px 18px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+  }
+  .score .big{font-size:24px;font-weight:800;color:var(--primary);font-family:Georgia,serif;line-height:1}
+  .score .txt{font-size:13px;color:var(--ink-2)}
+
+  .task-brief{font-size:14px;color:var(--ink);background:var(--primary-soft);border-radius:10px;padding:14px 18px;border-left:3px solid var(--primary)}
+  .task-h{margin:18px 0 6px;font-size:12px;font-weight:800;color:var(--ink-3);letter-spacing:.8px}
+  .task-hints{margin:0;padding-left:20px}
+  .task-hints li{font-size:13.5px;color:var(--ink-2);margin:6px 0}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:38px}
+  .pager .btn{max-width:48%;text-align:left;line-height:1.4;padding:12px 16px}
+  .pager .btn small{display:block;font-size:10.5px;color:var(--ink-3);font-weight:700;letter-spacing:.6px}
+  .pager .btn b{font-weight:600;font-size:13px}
+
+  /* ---------- 弹层 ---------- */
+  .mask{position:fixed;inset:0;background:rgba(20,30,46,.42);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:60px 20px 30px;overflow:auto}
+  .mask.show{display:flex}
+  .modal{background:var(--panel);border-radius:16px;width:100%;max-width:660px;box-shadow:0 24px 60px -18px rgba(10,20,35,.4);overflow:hidden}
+  .modal-h{display:flex;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid var(--line)}
+  .modal-h h3{margin:0;font-size:16px}
+  .modal-h .x{margin-left:auto;border:0;background:transparent;font-size:20px;color:var(--ink-3);line-height:1;padding:2px 6px}
+  .modal-h .x:hover{color:var(--ink)}
+  .modal-b{padding:22px 24px;max-height:64vh;overflow:auto}
+  .dict-in{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 14px;font-size:14px;outline:0;font-family:inherit;color:var(--ink);background:var(--panel-2)}
+  .dict-in:focus{border-color:var(--primary-2);background:#fff}
+  .dict-res{margin-top:14px}
+  .dr{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2);font-size:13.5px;align-items:baseline}
+  .dr:last-child{border-bottom:0}
+  .dr .e{font-family:Georgia,serif;font-weight:600;color:var(--ink);flex:0 0 41%}
+  .dr .c{color:var(--ink-2);flex:1}
+  .dr .src{flex:0 0 auto;font-size:11px;color:var(--primary);background:var(--primary-soft);border-radius:6px;padding:1px 8px;white-space:nowrap;border:0;cursor:pointer}
+  .dr .src:hover{background:#dbe8f7}
+  .rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+  .rcell{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+  .rcell b{display:block;font-size:22px;color:var(--primary);font-family:Georgia,serif;line-height:1.3}
+  .rcell span{font-size:11.5px;color:var(--ink-3)}
+  .rlist{margin:0;padding:0;list-style:none}
+  .rlist li{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-2);font-size:13.5px}
+  .rlist li:last-child{border-bottom:0}
+  .rlist .nm{flex:1;color:var(--ink-2)}
+  .rlist .sc{font-family:Georgia,serif;font-weight:700;color:var(--ink)}
+  .rlist .sc.good{color:var(--ok)}
+  .rlist .sc.bad{color:var(--bad)}
+  .rlist .go{border:1px solid var(--line);background:var(--panel);border-radius:7px;font-size:11.5px;padding:2px 10px;color:var(--ink-2)}
+  .rlist .go:hover{border-color:var(--primary);color:var(--primary)}
+  .empty{color:var(--ink-3);font-size:13px;text-align:center;padding:24px 0}
+
+  @media (max-width:900px){
+    .side{display:none}
+    .wrap{padding:22px 18px 80px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .hero{padding:24px 22px}
+    .hero h2{font-size:23px}
+    .lh{padding:22px 20px}
+    .lh h2{font-size:21px}
+    .box{padding:16px 16px}
+    .rgrid{grid-template-columns:1fr}
+  }
+  @media print{
+    .side,.topbar,.lh .acts,.pager,.mask{display:none!important}
+    .wrap{padding:0;max-width:none}
+    body{background:#fff;font-size:12px}
+    .blk .ex,.ex{display:block!important}
+    @page{margin:14mm}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <h1>商务英语写作</h1>
+      <div class="sub">Business English Writing</div>
+      <div class="tag">智慧课程 · 12 讲</div>
+    </div>
+    <nav class="side-scroll" id="nav"></nav>
+    <div class="side-foot">
+      <div class="lbl"><span>学习进度</span><span><b id="pg-txt">0%</b></span></div>
+      <div class="bar"><i id="pg-bar"></i></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="text" placeholder="搜索知识点、术语、例文…（如：实盘 / insurance / 溢短装）" autocomplete="off">
+      </div>
+      <button class="tbtn" id="btn-dict">术语速查</button>
+      <button class="tbtn" id="btn-report">学习报告</button>
+    </div>
+    <div class="wrap" id="view"></div>
+  </main>
+</div>
+
+<div class="mask" id="mask-dict">
+  <div class="modal">
+    <div class="modal-h"><h3>术语速查</h3><button class="x" data-close>&times;</button></div>
+    <div class="modal-b">
+      <input class="dict-in" id="dict-q" placeholder="输入英文或中文，如 enquiry / 索赔 / L/C">
+      <div class="dict-res" id="dict-res"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mask" id="mask-report">
+  <div class="modal">
+    <div class="modal-h"><h3>学习报告</h3><button class="x" data-close>&times;</button></div>
+    <div class="modal-b" id="rep-b"></div>
+  </div>
+</div>
+
+<script src="course-data.js"></script>
+<script>
+(function(){
+  var C = window.COURSE, LEC = C.allLectures;
+  var KEY = "bew-smart-course-v1";
+  var S = load();
+  var cur = "home";
+  var tStart = Date.now();
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(raw){ var o = JSON.parse(raw); o.done = o.done||{}; o.quiz = o.quiz||{}; o.time = o.time||{}; return o; }
+    }catch(e){}
+    return {done:{}, quiz:{}, time:{}};
+  }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function flushTime(){
+    if(cur && cur !== "home"){
+      S.time[cur] = (S.time[cur]||0) + Math.round((Date.now()-tStart)/1000);
+      tStart = Date.now(); save();
+    }
+  }
+  function fmtTime(sec){
+    if(!sec) return "0 分钟";
+    var m = Math.round(sec/60);
+    if(m < 60) return m + " 分钟";
+    return Math.floor(m/60) + " 小时 " + (m%60) + " 分钟";
+  }
+  function scoreOf(id){
+    var q = S.quiz[id];
+    if(!q) return null;
+    return { right:q.right||0, total:q.total||0 };
+  }
+  function progress(){
+    var n = Object.keys(S.done).filter(function(k){return S.done[k];}).length;
+    return Math.round(n/LEC.length*100);
+  }
+
+  /* ---------------- 侧边导航 ---------------- */
+  function renderNav(){
+    var h = "";
+    h += '<div class="part-title">课程导览</div>';
+    h += '<button class="navitem'+(cur==="home"?" active":"")+'" data-go="home">'+
+         '<span class="no">HOME</span><span style="flex:1">课程首页与总览</span></button>';
+    C.parts.forEach(function(p){
+      h += '<div class="part-title"><span>'+p.name+'</span> · '+esc(p.cn)+'</div>';
+      p.lectures.forEach(function(l){
+        h += '<button class="navitem'+(cur===l.id?" active":"")+'" data-go="'+l.id+'">'+
+             '<span class="no">'+esc(l.no)+'</span>'+
+             '<span style="flex:1">'+esc(l.cn)+'</span>'+
+             '<span class="dot'+(S.done[l.id]?" on":"")+'" title="'+(S.done[l.id]?"已学完":"未学完")+'"></span>'+
+             '</button>';
+      });
+    });
+    document.getElementById("nav").innerHTML = h;
+    var p = progress();
+    document.getElementById("pg-txt").textContent = p + "%";
+    document.getElementById("pg-bar").style.width = p + "%";
+  }
+
+  /* ---------------- 首页 ---------------- */
+  function viewHome(){
+    var totalMin = LEC.reduce(function(a,l){return a+(l.minutes||0);},0);
+    var totalQuiz = LEC.reduce(function(a,l){return a+l.quiz.length;},0);
+    var totalTerm = LEC.reduce(function(a,l){return a+l.terms.length;},0);
+    var doneN = Object.keys(S.done).filter(function(k){return S.done[k];}).length;
+    var h = "";
+    h += '<div class="hero">'+
+         '<h2>'+esc(C.meta.title)+'</h2>'+
+         '<div class="h-en">'+esc(C.meta.titleEn)+' · Smart Course</div>'+
+         '<p>本课程按「绪论 + 12 讲」组织，覆盖商务函电全流程、商务合同与求职社交文书。每讲包含学习目标、核心知识点、中英术语表、范文结构拆解、原创示例函件与互动自测，学习进度与答题成绩自动保存在本机浏览器。</p>'+
+         '<div class="note"><b>关于内容来源：</b>'+esc(C.meta.note)+'</div>'+
+         '</div>';
+    h += '<div class="stats">'+
+         '<div class="stat"><b>'+LEC.length+'</b><span>讲次模块</span></div>'+
+         '<div class="stat"><b>'+totalTerm+'</b><span>核心术语</span></div>'+
+         '<div class="stat"><b>'+totalQuiz+'</b><span>自测题</span></div>'+
+         '<div class="stat"><b>'+(totalMin/60).toFixed(1)+'h</b><span>建议学时</span></div>'+
+         '</div>';
+    h += '<div class="cards">';
+    LEC.forEach(function(l){
+      var sc = scoreOf(l.id);
+      h += '<button class="card" data-go="'+l.id+'">'+
+           '<span class="c-no">'+esc(l.no)+' · '+esc(l.partName)+'</span>'+
+           '<span class="c-cn">'+esc(l.cn)+'</span>'+
+           '<span class="c-en">'+esc(l.en)+'</span>'+
+           '<span class="c-sum">'+esc(l.summary)+'</span>'+
+           '<span class="c-meta">'+
+             '<span class="pill'+(S.done[l.id]?" done":"")+'">'+(S.done[l.id]?"已学完":"未学完")+'</span>'+
+             '<span class="pill">'+l.minutes+' 分钟</span>'+
+             (sc ? '<span class="pill">自测 '+sc.right+'/'+sc.total+'</span>' : '<span class="pill">未测</span>')+
+           '</span>'+
+           '</button>';
+    });
+    h += '</div>';
+    return h;
+  }
+
+  /* ---------------- 讲次页 ---------------- */
+  function viewLecture(l){
+    var sc = scoreOf(l.id);
+    var h = "";
+    h += '<div class="lh">'+
+         '<div class="kicker">'+esc(l.partName)+' · '+esc(l.partCn)+' · '+esc(l.no)+'</div>'+
+         '<h2>'+esc(l.cn)+'</h2>'+
+         '<div class="h-en">'+esc(l.en)+'</div>'+
+         '<div class="sum">'+esc(l.summary)+'</div>'+
+         '<div class="acts">'+
+           '<button class="btn '+(S.done[l.id]?"ok":"")+'" id="btn-done">'+(S.done[l.id]?"✓ 已学完（点击取消）":"标记本讲已学完")+'</button>'+
+           '<button class="btn" id="btn-topdf">打印 / 导出 PDF</button>'+
+           (sc ? '<button class="btn" id="btn-reset">重做自测</button>' : '')+
+         '</div>'+
+         '</div>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">1</span><h3>学习目标</h3><span class="n">学完本讲，你应当能够</span></div>'+
+         '<div class="box"><ul class="goals">'+
+         l.objectives.map(function(o){return '<li>'+esc(o)+'</li>';}).join("")+
+         '</ul></div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">2</span><h3>核心知识点</h3><span class="n">共 '+l.points.length+' 个要点</span></div>'+
+         '<div class="box">'+
+         l.points.map(function(p){return '<div class="kp"><h4>'+esc(p.h)+'</h4><p>'+esc(p.b)+'</p></div>';}).join("")+
+         '</div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">3</span><h3>关键术语</h3><span class="n">共 '+l.terms.length+' 条</span></div>'+
+         '<div class="box" style="padding:8px 0"><table class="terms"><thead><tr><th>English</th><th>中文</th><th>备注</th></tr></thead><tbody>'+
+         l.terms.map(function(t){return '<tr><td>'+esc(t.en)+'</td><td>'+esc(t.cn)+'</td><td>'+esc(t.note||"")+'</td></tr>';}).join("")+
+         '</tbody></table></div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">4</span><h3>范文结构拆解</h3><span class="n">写作骨架</span></div>'+
+         '<div class="box"><p style="margin:0 0 18px;color:var(--ink-2);font-size:14px">'+esc(l.skeleton.desc)+'</p>'+
+         '<ul class="flow">'+
+         l.skeleton.steps.map(function(s){return '<li><span class="fn">'+esc(s.n)+'</span><span class="fd">'+esc(s.d)+'</span></li>';}).join("")+
+         '</ul>'+
+         '<div class="tips"><div class="t-h">写作提示</div><ul>'+
+         l.skeleton.tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join("")+
+         '</ul></div></div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">5</span><h3>示例函件</h3><span class="n">原创例文</span></div>'+
+         '<div class="box"><p class="sample-h">'+esc(l.sample.title)+'</p><p class="sample-n">'+esc(l.sample.note)+'</p>'+
+         l.sample.blocks.map(function(b){
+           return '<div class="blk"><div class="bl">'+esc(b.label)+'</div>'+
+                  '<div class="be en">'+esc(b.en)+'</div>'+
+                  '<div class="bc">'+(b.cn?esc(b.cn):"")+'</div></div>';
+         }).join("")+
+         '</div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">6</span><h3>互动自测</h3><span class="n">共 '+l.quiz.length+' 题 · 点击选项即时判分</span></div>'+
+         '<div class="box quiz" id="quiz">';
+    l.quiz.forEach(function(q,qi){
+      h += '<div class="q" data-q="'+qi+'"><div class="q-t"><span class="qn">'+(qi+1)+'</span><span>'+esc(q.q)+'</span></div>';
+      q.opts.forEach(function(o,oi){
+        h += '<button class="opt" data-o="'+oi+'"><span class="k">'+"ABCD"[oi]+'</span><span>'+esc(o)+'</span></button>';
+      });
+      h += '<div class="ex"><b>解析：</b>'+esc(q.ex)+'</div></div>';
+    });
+    h += '</div><div class="score" id="scorebar"></div></section>';
+
+    h += '<section class="sec"><div class="sec-h"><span class="idx">7</span><h3>写作任务</h3><span class="n">动手练习</span></div>'+
+         '<div class="box"><div class="task-brief">'+esc(l.task.brief)+'</div>'+
+         '<div class="task-h">写作要点 / 提示</div><ul class="task-hints">'+
+         l.task.hints.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+
+         '</ul></div></section>';
+
+    var idx = LEC.indexOf(l);
+    h += '<div class="pager">';
+    if(idx > 0){ h += '<button class="btn" data-go="'+LEC[idx-1].id+'"><small>← 上一讲</small><b>'+esc(LEC[idx-1].cn)+'</b></button>'; } else { h += '<span></span>'; }
+    if(idx < LEC.length-1){ h += '<button class="btn" data-go="'+LEC[idx+1].id+'" style="margin-left:auto"><small>下一讲 →</small><b>'+esc(LEC[idx+1].cn)+'</b></button>'; }
+    h += '</div>';
+    return h;
+  }
+
+  /* ---------------- 自测交互 ---------------- */
+  function initQuiz(l){
+    var qs = document.querySelectorAll("#quiz .q");
+    if(!qs.length) return;
+    var state = S.quiz[l.id] || null;
+    var answered = 0, right = 0;
+
+    function restore(){
+      if(!state || !state.ans) return;
+      qs.forEach(function(qEl,qi){
+        var a = state.ans[qi];
+        if(a === undefined || a === null) return;
+        lock(qEl, qi, a, true);
+      });
+      updateBar();
+    }
+    function lock(qEl, qi, chosen, silent){
+      var q = l.quiz[qi];
+      qEl.querySelectorAll(".opt").forEach(function(btn){
+        var oi = +btn.dataset.o;
+        btn.disabled = true;
+        if(oi === q.a) btn.classList.add("right");
+        else if(oi === chosen) btn.classList.add("wrong");
+      });
+      qEl.querySelector(".ex").classList.add("show");
+      if(!silent){
+        answered++;
+        if(chosen === q.a) right++;
+        if(!S.quiz[l.id]) S.quiz[l.id] = {total:l.quiz.length, right:0, ans:{}};
+        S.quiz[l.id].ans[qi] = chosen;
+        S.quiz[l.id].right = Object.keys(S.quiz[l.id].ans).filter(function(k){ return S.quiz[l.id].ans[k] === l.quiz[k].a; }).length;
+        save(); renderNav(); updateBar();
+      }
+    }
+    function updateBar(){
+      var q2 = S.quiz[l.id];
+      var r = q2 ? q2.right : 0;
+      var a2 = q2 ? Object.keys(q2.ans).length : 0;
+      var bar = document.getElementById("scorebar");
+      if(!bar) return;
+      var pct = a2 ? Math.round(r/a2*100) : 0;
+      var cls = pct >= 80 ? "good" : (pct >= 60 ? "" : "bad");
+      bar.innerHTML = '<span class="big '+(pct>=80?"good":"")+'" style="color:'+(pct>=80?"var(--ok)":(pct>=60?"var(--primary)":"var(--bad)"))+'">'+r+' / '+l.quiz.length+'</span>'+
+        '<span class="txt">已作答 <b>'+a2+'</b> 题，正确率 <b>'+pct+'%</b>'+(a2 < l.quiz.length ? '，还有 '+(l.quiz.length-a2)+' 题未作答' : '')+
+        (a2===l.quiz.length ? '<br>本讲自测已完成，成绩已计入学习报告。' : '')+'</span>';
+    }
+
+    qs.forEach(function(qEl,qi){
+      qEl.querySelectorAll(".opt").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          if(btn.disabled) return;
+          right = 0; answered = 0;
+          lock(qEl, qi, +btn.dataset.o, false);
+        });
+      });
+    });
+    restore();
+  }
+
+  /* ---------------- 渲染 ---------------- */
+  function render(){
+    renderNav();
+    var v = document.getElementById("view");
+    if(cur === "home"){ v.innerHTML = viewHome(); }
+    else { var l = LEC.filter(function(x){return x.id===cur;})[0]; v.innerHTML = viewLecture(l); initQuiz(l); }
+    document.querySelectorAll("[data-go]").forEach(function(el){
+      el.addEventListener("click", function(){ go(el.dataset.go); });
+    });
+    var bd = document.getElementById("btn-done");
+    if(bd) bd.addEventListener("click", function(){
+      S.done[cur] = !S.done[cur]; save(); render();
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+    var bp = document.getElementById("btn-topdf");
+    if(bp) bp.addEventListener("click", function(){ window.print(); });
+    var br = document.getElementById("btn-reset");
+    if(br) br.addEventListener("click", function(){
+      delete S.quiz[cur]; save(); render();
+    });
+    window.scrollTo(0,0);
+  }
+  function go(id){
+    flushTime();
+    cur = id;
+    render();
+  }
+
+  /* ---------------- 术语速查 ---------------- */
+  var TERMS = [];
+  LEC.forEach(function(l){
+    l.terms.forEach(function(t){ TERMS.push({en:t.en, cn:t.cn, note:t.note||"", lec:l.id, lecCn:l.cn, no:l.no}); });
+  });
+  function dictRender(kw){
+    var box = document.getElementById("dict-res");
+    kw = (kw||"").trim().toLowerCase();
+    var list = kw ? TERMS.filter(function(t){
+      return t.en.toLowerCase().indexOf(kw) > -1 || t.cn.indexOf(kw) > -1 || t.note.toLowerCase().indexOf(kw) > -1;
+    }) : TERMS;
+    if(!list.length){ box.innerHTML = '<div class="empty">没有匹配的术语，换一个关键词试试。</div>'; return; }
+    if(list.length > 120) list = list.slice(0,120);
+    box.innerHTML = list.map(function(t){
+      return '<div class="dr"><span class="e">'+esc(t.en)+'</span><span class="c">'+esc(t.cn)+(t.note?' <span style="color:var(--ink-3)">（'+esc(t.note)+'）</span>':'')+'</span>'+
+             '<button class="src" data-dict-go="'+t.lec+'">'+esc(t.no)+'</button></div>';
+    }).join("");
+    box.querySelectorAll("[data-dict-go]").forEach(function(b){
+      b.addEventListener("click", function(){ closeAll(); go(b.dataset.dictGo); setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); },60); });
+    });
+  }
+
+  /* ---------------- 学习报告 ---------------- */
+  function reportRender(){
+    var doneN = Object.keys(S.done).filter(function(k){return S.done[k];}).length;
+    var totalSec = 0; Object.keys(S.time).forEach(function(k){ totalSec += S.time[k]||0; });
+    var totQ = 0, totR = 0;
+    LEC.forEach(function(l){
+      var s = S.quiz[l.id];
+      if(s){ totQ += Object.keys(s.ans||{}).length; totR += s.right||0; }
+    });
+    var acc = totQ ? Math.round(totR/totQ*100) : 0;
+    var h = '<div class="rgrid">'+
+      '<div class="rcell"><b>'+doneN+' / '+LEC.length+'</b><span>已学完讲次</span></div>'+
+      '<div class="rcell"><b>'+acc+'%</b><span>自测正确率（'+totR+'/'+totQ+'）</span></div>'+
+      '<div class="rcell"><b>'+fmtTime(totalSec)+'</b><span>累计学习时长</span></div>'+
+      '</div>';
+    h += '<div class="task-h" style="margin-top:0">各讲自测成绩</div><ul class="rlist">';
+    LEC.forEach(function(l){
+      var s = S.quiz[l.id];
+      var t = s ? Object.keys(s.ans||{}).length : 0;
+      var txt = s ? (s.right+' / '+l.quiz.length) : '—';
+      var cls = !s ? '' : (s.right >= l.quiz.length*0.8 ? 'good' : (s.right >= l.quiz.length*0.6 ? '' : 'bad'));
+      h += '<li><span class="nm">'+esc(l.no)+' '+esc(l.cn)+(S.done[l.id]?' <span style="color:var(--ok)">·已学</span>':'')+'</span>'+
+           '<span class="sc '+cls+'">'+txt+'</span>'+
+           '<button class="go" data-rep-go="'+l.id+'">前往</button></li>';
+    });
+    h += '</ul>';
+    if(totQ === 0) h += '<div class="empty">还没有自测记录，从第一讲开始吧。</div>';
+    var box = document.getElementById("rep-b");
+    box.innerHTML = h;
+    box.querySelectorAll("[data-rep-go]").forEach(function(b){
+      b.addEventListener("click", function(){ closeAll(); go(b.dataset.repGo); });
+    });
+  }
+
+  /* ---------------- 全局搜索 ---------------- */
+  function globalSearch(kw){
+    kw = kw.trim().toLowerCase();
+    if(!kw) return null;
+    var hits = [];
+    LEC.forEach(function(l){
+      var bag = [l.cn, l.en, l.summary].join(" ") + " " +
+        l.objectives.join(" ") + " " + l.points.map(function(p){return p.h+" "+p.b;}).join(" ") + " " +
+        l.terms.map(function(t){return t.en+" "+t.cn+" "+(t.note||"");}).join(" ") + " " +
+        l.skeleton.steps.map(function(s){return s.n+" "+s.d;}).join(" ") + " " +
+        l.sample.blocks.map(function(b){return b.en+" "+(b.cn||"");}).join(" ");
+      if(bag.toLowerCase().indexOf(kw) > -1) hits.push(l);
+    });
+    return hits;
+  }
+
+  function renderSearch(kw){
+    var hits = globalSearch(kw);
+    var h = '<div class="hero"><h2>搜索：'+esc(kw)+'</h2><div class="h-en">'+hits.length+' 个讲次命中</div></div>';
+    if(!hits.length){ h += '<div class="box" style="margin-top:22px"><div class="empty">没有找到相关内容。</div></div>'; }
+    else{
+      h += '<div class="cards">';
+      hits.forEach(function(l){
+        h += '<button class="card" data-go="'+l.id+'"><span class="c-no">'+esc(l.no)+'</span><span class="c-cn">'+esc(l.cn)+'</span><span class="c-en">'+esc(l.en)+'</span><span class="c-sum">'+esc(l.summary)+'</span></button>';
+      });
+      h += '</div>';
+    }
+    return h;
+  }
+
+  /* ---------------- 事件绑定 ---------------- */
+  function closeAll(){ document.querySelectorAll(".mask").forEach(function(m){ m.classList.remove("show"); }); }
+  document.querySelectorAll("[data-close]").forEach(function(b){ b.addEventListener("click", closeAll); });
+  document.querySelectorAll(".mask").forEach(function(m){
+    m.addEventListener("click", function(e){ if(e.target === m) closeAll(); });
+  });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeAll(); });
+
+  document.getElementById("btn-dict").addEventListener("click", function(){
+    document.getElementById("mask-dict").classList.add("show");
+    dictRender(document.getElementById("dict-q").value);
+    document.getElementById("dict-q").focus();
+  });
+  document.getElementById("dict-q").addEventListener("input", function(){ dictRender(this.value); });
+
+  document.getElementById("btn-report").addEventListener("click", function(){
+    reportRender();
+    document.getElementById("mask-report").classList.add("show");
+  });
+
+  var qEl = document.getElementById("q");
+  var qTimer = null;
+  qEl.addEventListener("input", function(){
+    clearTimeout(qTimer);
+    var v = this.value;
+    qTimer = setTimeout(function(){
+      flushTime();
+      var v2 = document.getElementById("q").value;
+      if(v2.trim()){
+        document.getElementById("view").innerHTML = renderSearch(v2);
+        document.querySelectorAll("[data-go]").forEach(function(el){ el.addEventListener("click", function(){ document.getElementById("q").value=""; go(el.dataset.go); }); });
+        window.scrollTo(0,0);
+      } else { render(); }
+    }, 240);
+  });
+
+  window.addEventListener("beforeunload", flushTime);
+  document.addEventListener("visibilitychange", function(){ if(document.hidden) flushTime(); else tStart = Date.now(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
